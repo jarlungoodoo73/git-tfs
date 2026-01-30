@@ -1019,7 +1019,8 @@ namespace GitTfs.VsCommon
                 var label = VersionControl.QueryLabels(labelDefinition.Name, tfsPathBranch, null, true, null, VersionSpec.Latest).FirstOrDefault();
                 if (label == null)
                 {
-                    throw new GitTfsException("error: data for the label '" + labelDefinition.Name + "' can't be loaded!");
+                    Trace.TraceWarning("warning: data for the label '" + labelDefinition.Name + "' can't be loaded! Skipping this label...");
+                    continue;
                 }
                 var tfsLabel = new TfsLabel
                 {
